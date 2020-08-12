@@ -99,7 +99,7 @@ def _create_update_role_definition(cmd, role_definition, for_update):
         if not role_name:
             raise CLIError("please provide role name")
 
-    if not for_update and not('assignableScopes' in role_definition and role_definition['assignableScopes']):
+    if not for_update and not role_definition.get('assignableScopes', None):
         raise CLIError("please provide 'assignableScopes'")
 
     return worker.create_role_definition(definitions_client, role_name, role_id, role_definition)
